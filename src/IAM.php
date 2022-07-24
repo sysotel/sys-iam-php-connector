@@ -39,11 +39,11 @@ class IAM
     }
 
     /**
-     * @param $accessToken
+     * @param string|null $accessToken
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function adminAuth($accessToken): ResponseInterface
+    public function adminAuth(string|null $accessToken): ResponseInterface
     {
         $path = $this->routes['admin-auth'];
 
