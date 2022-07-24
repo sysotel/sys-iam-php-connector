@@ -1,6 +1,5 @@
 <?php
 
-// config for VendorName/Skeleton
 return [
     'baseUrl' => env('IAM_API_BASE_URL'),
 
