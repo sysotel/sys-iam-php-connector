@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * @method ResponseInterface adminAuth(string|null $accessToken)
+ * @method static ResponseInterface adminAuth(string|null $accessToken)
  *
  * @see IAM
  */
