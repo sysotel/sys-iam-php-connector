@@ -12,10 +12,6 @@ class IAM
     protected array $config;
     protected Client $client;
 
-    protected $routes = [
-        'admin-auth' => 'admin-auth'
-    ];
-
     /**
      * @param $config
      */
@@ -45,9 +41,7 @@ class IAM
      */
     public function adminAuth(string|null $accessToken): ResponseInterface
     {
-        $path = $this->routes['admin-auth'];
-
-        return $this->client->post($this->url($path), [
+        return $this->client->post($this->url('admin-auth'), [
             'headers' => $this->defaultHeaders(),
             'form_params' => [
                 'accessToken' => $accessToken
@@ -55,7 +49,30 @@ class IAM
         ]);
     }
 
-    protected function url(string $path = '')
+    /**
+     * @param string|null $accessToken
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function appUserAuth(string|null $accessToken): ResponseInterface
+    {
+        return $this->client->post($this->url('app-user-auth'), [
+            'headers' => $this->defaultHeaders(),
+            'form_params' => [
+                'accessToken' => $accessToken
+            ]
+        ]);
+    }
+
+    /**
+     * Takes $url from config and $path from attributes
+     * Normalizes both
+     * Appends and returns a URL
+     *
+     * @param string $path
+     * @return string
+     */
+    protected function url(string $path = ''): string
     {
         $baseUrl = $this->config['baseUrl'];
         if(!Str::endsWith($baseUrl, '/')) {
