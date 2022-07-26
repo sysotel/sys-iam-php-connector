@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\APP\IAMConnector\Enums;
+namespace SYSOTEL\APP\IAMConnector\Enum;
 
 use Illuminate\Support\Str;
 
@@ -9,10 +9,10 @@ use Illuminate\Support\Str;
  */
 enum AppPermission: string
 {
-    case CMS___SPACES___LIST = 'CMS::SPACES:LIST';
-    case CMS___SPACES___ADD = 'CMS::SPACES:ADD';
-    case CMS___SPACES___UPDATE = 'CMS::SPACES:UPDATE';
-    case CMS___SPACES___UPDATE_STATUS = 'CMS::SPACES:UPDATE_STATUS';
+    case CMS___SPACES___LIST = 'SPACES:LIST';
+    case CMS___SPACES___ADD = 'SPACES:ADD';
+    case CMS___SPACES___UPDATE = 'SPACES:UPDATE';
+    case CMS___SPACES___UPDATE_STATUS = 'SPACES:UPDATE_STATUS';
 
     /**
      * @return string|void

@@ -37,16 +37,18 @@ class IAM
     }
 
     /**
-     * @param string|null $accessToken
+     * @param string $accessToken
+     * @param string|null $permission
      * @return AdminDetails
      * @throws GuzzleException
      */
-    public function adminAuth(string|null $accessToken): AdminDetails
+    public function adminAuth(string $accessToken, null|string $permission = null): AdminDetails
     {
         $response = $this->client->post($this->url('admin-auth'), [
             'headers' => $this->defaultHeaders(),
             'form_params' => [
-                'accessToken' => $accessToken
+                'accessToken' => $accessToken,
+                'permission' => $permission
             ]
         ]);
 
