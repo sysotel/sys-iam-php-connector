@@ -10,9 +10,9 @@ class AdminDetails
      * @param string $email
      */
     public function __construct(
-        protected int $id,
-        protected string $name,
-        protected string $email,
+        public int $id,
+        public readonly string $name,
+        public readonly string $email,
     ){}
 
     /**

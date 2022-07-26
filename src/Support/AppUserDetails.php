@@ -11,10 +11,10 @@ class AppUserDetails
      * @param string $mobile
      */
     public function __construct(
-        protected int $id,
-        protected string $name,
-        protected string $email,
-        protected string $mobile,
+        public readonly int $id,
+        public readonly string $name,
+        public readonly string $email,
+        public readonly string $mobile,
     ){}
 
     /**
