@@ -6,6 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
+use SYSOTEL\APP\IAMConnector\Exceptions\InvalidTokenException;
+use SYSOTEL\APP\IAMConnector\Exceptions\PermissionDeniedException;
+use SYSOTEL\APP\IAMConnector\Exceptions\PropertyAccessDeniedException;
 use SYSOTEL\APP\IAMConnector\Support\AdminDetails;
 use SYSOTEL\APP\IAMConnector\Support\AppUserDetails;
 use SYSOTEL\APP\IAMConnector\Support\ConfigValidator;
@@ -60,7 +63,7 @@ class IAM
 
         if($response['authDetails']['hasPermission'] === false)
         {
-            throw new PermissionDeniedException();
+            throw new PermissionDeniedException;
         }
 
         if(!$response['admin']) {
