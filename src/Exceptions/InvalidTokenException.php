@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\APP\IAMConnector;
+namespace SYSOTEL\APP\IAMConnector\Exception;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
