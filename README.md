@@ -1,2 +1,2 @@
 # Introduction
-A php package to connect `sys-iam` api.
+A php package to connect `sys-iam-api`.

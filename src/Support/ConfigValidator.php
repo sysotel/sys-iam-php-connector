@@ -2,29 +2,23 @@
 
 namespace SYSOTEL\APP\IAMConnector\Support;
 
-class AdminDetails
+class ConfigValidator
 {
     /**
-     * @param int $id
-     * @param string $name
-     * @param string $email
+     * @param $config
      */
-    public function __construct(
-        protected int $id,
-        protected string $name,
-        protected string $email,
-    ){}
-
-    /**
-     * @param array $array
-     * @return AdminDetails
-     */
-    public static function createFromArray(array $array): AdminDetails
+    public static function validate($config): void
     {
-        return new self(
-            $array['id'],
-            $array['fullName'],
-            $array['email']
-        );
+        if(!is_array($config)) {
+            abort(500, '$config should be an array.' . get_class($config) . ' passed.');
+        }
+
+        if(!isset($config['baseUrl'])) {
+            abort(500, 'baseUrl not found in config');
+        }
+
+        if(!isset($config['auth']['key'])) {
+            abort(500, 'auth.key not found in config');
+        }
     }
 }
