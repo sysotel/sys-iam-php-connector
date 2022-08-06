@@ -57,16 +57,15 @@ class IAM
 
         $response = $this->responseToArray($response);
 
-        if(!$response['authDetails']['isTokenValid']) {
+        if (!$response['authDetails']['isTokenValid']) {
             throw new InvalidTokenException;
         }
 
-        if($response['authDetails']['hasPermission'] === false)
-        {
+        if ($response['authDetails']['hasPermission'] === false) {
             throw new PermissionDeniedException;
         }
 
-        if(!$response['admin']) {
+        if (!$response['admin']) {
             abort(500, 'Admin details not found in response');
         }
 
@@ -93,19 +92,19 @@ class IAM
 
         $response = $this->responseToArray($response);
 
-        if(!$response['authDetails']['isTokenValid']) {
+        if (!$response['authDetails']['isTokenValid']) {
             throw new InvalidTokenException;
         }
 
-        if($response['authDetails']['hasPropertyAccess'] === false) {
+        if ($response['authDetails']['hasPropertyAccess'] === false) {
             throw new PropertyAccessDeniedException;
         }
 
-        if($response['authDetails']['hasPermission'] === false) {
+        if ($response['authDetails']['hasPermission'] === false) {
             throw new PermissionDeniedException();
         }
 
-        if(!$response['user']) {
+        if (!$response['user']) {
             abort(500, 'User details not found in response');
         }
 
@@ -113,16 +112,18 @@ class IAM
     }
 
     /**
+     * @param string $accessToken
      * @param int $propertyId
      * @param string $name
      * @return mixed
      * @throws GuzzleException
      */
-    public function syncPropertyDetails(int $propertyId, string $name): mixed
+    public function syncPropertyDetails(string $accessToken, int $propertyId, string $name): mixed
     {
         $response = $this->client->post($this->url('properties'), [
             'headers' => $this->defaultHeaders(),
             'form_params' => [
+                'accessToken' => $accessToken,
                 'propertyId' => $propertyId,
                 'name' => $name,
             ]
@@ -142,11 +143,11 @@ class IAM
     protected function url(string $path = ''): string
     {
         $baseUrl = $this->config['baseUrl'];
-        if(!Str::endsWith($baseUrl, '/')) {
+        if (!Str::endsWith($baseUrl, '/')) {
             $baseUrl .= '/';
         }
 
-        if(Str::startsWith($path, '/')) {
+        if (Str::startsWith($path, '/')) {
             $path = Str::substr($path, 1);
         }
 
