@@ -97,13 +97,11 @@ class IAM
             throw new InvalidTokenException;
         }
 
-        if($response['authDetails']['hasPropertyAccess'] === false)
-        {
+        if($response['authDetails']['hasPropertyAccess'] === false) {
             throw new PropertyAccessDeniedException;
         }
 
-        if($response['authDetails']['hasPermission'] === false)
-        {
+        if($response['authDetails']['hasPermission'] === false) {
             throw new PermissionDeniedException();
         }
 
@@ -112,6 +110,25 @@ class IAM
         }
 
         return AppUserDetails::createFromArray($response['user']);
+    }
+
+    /**
+     * @param int $propertyId
+     * @param string $name
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function syncPropertyDetails(int $propertyId, string $name): mixed
+    {
+        $response = $this->client->post($this->url('properties'), [
+            'headers' => $this->defaultHeaders(),
+            'form_params' => [
+                'propertyId' => $propertyId,
+                'name' => $name,
+            ]
+        ]);
+
+        return $this->responseToArray($response);
     }
 
     /**
