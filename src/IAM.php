@@ -79,9 +79,9 @@ class IAM
      * @return AppUserDetails
      * @throws GuzzleException
      */
-    public function appUserAuth(string $accessToken, int $propertyId = null, string $permission = null): AppUserDetails
+    public function extranetUserAuth(string $accessToken, int $propertyId = null, string $permission = null): AppUserDetails
     {
-        $response = $this->client->post($this->url('app-user-auth'), [
+        $response = $this->client->post($this->url('extranet-user-auth'), [
             'headers' => $this->defaultHeaders(),
             'form_params' => [
                 'accessToken' => $accessToken,
