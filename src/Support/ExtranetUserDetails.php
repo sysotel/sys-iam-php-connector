@@ -2,7 +2,7 @@
 
 namespace SYSOTEL\APP\IAMConnector\Support;
 
-class AppUserDetails
+class ExtranetUserDetails
 {
     /**
      * @param int $id
@@ -19,9 +19,9 @@ class AppUserDetails
 
     /**
      * @param array $array
-     * @return AppUserDetails
+     * @return ExtranetUserDetails
      */
-    public static function createFromArray(array $array): AppUserDetails
+    public static function createFromArray(array $array): ExtranetUserDetails
     {
         return new self(
             $array['id'],

@@ -10,7 +10,7 @@ use SYSOTEL\APP\IAMConnector\Exceptions\InvalidTokenException;
 use SYSOTEL\APP\IAMConnector\Exceptions\PermissionDeniedException;
 use SYSOTEL\APP\IAMConnector\Exceptions\PropertyAccessDeniedException;
 use SYSOTEL\APP\IAMConnector\Support\AdminDetails;
-use SYSOTEL\APP\IAMConnector\Support\AppUserDetails;
+use SYSOTEL\APP\IAMConnector\Support\ExtranetUserDetails;
 use SYSOTEL\APP\IAMConnector\Support\ConfigValidator;
 
 class IAM
@@ -76,10 +76,10 @@ class IAM
      * @param string $accessToken
      * @param int|null $propertyId
      * @param string|null $permission
-     * @return AppUserDetails
+     * @return ExtranetUserDetails
      * @throws GuzzleException
      */
-    public function extranetUserAuth(string $accessToken, int $propertyId = null, string $permission = null): AppUserDetails
+    public function extranetUserAuth(string $accessToken, int $propertyId = null, string $permission = null): ExtranetUserDetails
     {
         $response = $this->client->post($this->url('extranet-user-auth'), [
             'headers' => $this->defaultHeaders(),
@@ -108,7 +108,7 @@ class IAM
             abort(500, 'User details not found in response');
         }
 
-        return AppUserDetails::createFromArray($response['user']);
+        return ExtranetUserDetails::createFromArray($response['user']);
     }
 
     /**
