@@ -11,6 +11,7 @@ use SYSOTEL\APP\IAMConnector\Support\ExtranetUserDetails;
  * @method static AdminDetails adminAuth(string|null $accessToken, null|string $permission = null)
  * @method static ExtranetUserDetails extranetUserAuth(string|null $accessToken, int $propertyId = null, string $permission = null)
  * @method static mixed syncPropertyDetails(int $propertyId, string $name)
+ * @method static mixed getPropertiesForUser(int $userId)
  *
  * @see IAM
  */
