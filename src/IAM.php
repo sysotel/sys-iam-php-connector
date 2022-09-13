@@ -130,6 +130,18 @@ class IAM
         return $this->responseToArray($response);
     }
 
+    public function getPropertiesForUser(int $userId)
+    {
+        $response = $this->client->get($this->url('extranet-user-properties'), [
+            'headers' => $this->defaultHeaders(),
+            'query' => [
+                'userId' => $userId,
+            ]
+        ]);
+
+        return $this->responseToArray($response);
+    }
+
     /**
      * Takes $url from config and $path from attributes
      * Normalizes both
