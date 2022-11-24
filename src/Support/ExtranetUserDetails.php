@@ -8,13 +8,13 @@ class ExtranetUserDetails
      * @param int $id
      * @param string $name
      * @param string $email
-     * @param string $mobile
+     * @param ?string $mobile
      */
     public function __construct(
         public readonly int $id,
         public readonly string $name,
         public readonly string $email,
-        public readonly string $mobile,
+        public readonly ?string $mobile,
     ){}
 
     /**
