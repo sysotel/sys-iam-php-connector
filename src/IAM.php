@@ -113,17 +113,17 @@ class IAM
 
     /**
      * @param int $propertyId
-     * @param string $name
+     * @param string $propertyName
      * @return mixed
      * @throws GuzzleException
      */
-    public function syncPropertyDetails(int $propertyId, string $name): mixed
+    public function syncPropertyDetails(int $propertyId, string $propertyName): mixed
     {
-        $response = $this->client->post($this->url('properties'), [
+        $response = $this->client->post($this->url('sync-property-details'), [
             'headers' => $this->defaultHeaders(),
             'form_params' => [
                 'propertyId' => $propertyId,
-                'name' => $name,
+                'propertyName' => $propertyName,
             ]
         ]);
 
