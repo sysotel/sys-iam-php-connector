@@ -142,6 +142,24 @@ class IAM
         return $this->responseToArray($response);
     }
 
+
+    /**
+     * Get initial data for a property.
+     *
+     * @param int $propertyId
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function getPropertyInitialData(int $propertyId): mixed
+    {
+        $response = $this->client->get($this->url("properties/{$propertyId}/initial-data"), [
+            'headers' => $this->defaultHeaders(),
+        ]);
+
+      return $this->responseToArray($response);
+    }
+
+
     /**
      * Takes $url from config and $path from attributes
      * Normalizes both
@@ -172,4 +190,5 @@ class IAM
     {
         return json_decode($response->getBody()->getContents(), true);
     }
+
 }
