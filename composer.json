@@ -37,7 +37,11 @@
         "format": "vendor/bin/pint"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": false,
+            "phpstan/extension-installer": false
+        }
     },
     "extra": {
         "laravel": {
