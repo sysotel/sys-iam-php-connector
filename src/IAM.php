@@ -42,10 +42,10 @@ class IAM
     /**
      * @param string $accessToken
      * @param string|null $permission
-     * @return array
+     * @return AdminDetails
      * @throws GuzzleException
      */
-    public function adminAuth(string $accessToken, null|string $permission = null): array
+    public function adminAuth(string $accessToken, null|string $permission = null): AdminDetails
     {
         $response = $this->client->post($this->url('admin-auth'), [
             'headers' => $this->defaultHeaders(),
@@ -69,15 +69,8 @@ class IAM
             abort(500, 'Admin details not found in response');
         }
 
-        $permissionData = $this->getPermissionData();
-        $adminDetails =  AdminDetails::createFromArray($response['admin']);
-
-        return [
-            'adminDetails' => $adminDetails,
-            'permissionData' => $permissionData,
-        ];
+        return AdminDetails::createFromArray($response['admin']);
     }
-
     /**
      * @param string $accessToken
      * @param int|null $propertyId
