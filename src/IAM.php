@@ -39,6 +39,46 @@ class IAM
         ];
     }
 
+//    /**
+//     * @param string $accessToken
+//     * @param string|null $permission
+//     * @return array
+//     * @throws GuzzleException
+//     */
+//    public function adminAuth(string $accessToken, null|string $permission = null): array
+//    {
+//        $response = $this->client->post($this->url('admin-auth'), [
+//            'headers' => $this->defaultHeaders(),
+//            'form_params' => [
+//                'accessToken' => $accessToken,
+//                'permission' => $permission
+//            ]
+//        ]);
+//
+//        $response = $this->responseToArray($response);
+//
+//        if (!$response['authDetails']['isTokenValid']) {
+//            throw new InvalidTokenException;
+//        }
+//
+//        if ($response['authDetails']['hasPermission'] === false) {
+//            throw new PermissionDeniedException;
+//        }
+//
+//        if (!$response['admin']) {
+//            abort(500, 'Admin details not found in response');
+//        }
+//
+//        $permissionData = $this->getPermissionData();
+//        $adminDetails =  AdminDetails::createFromArray($response['admin']);
+//
+//        return [
+//            'adminDetails' => $adminDetails,
+//            'permissionData' => $permissionData,
+//        ];
+//    }
+
+
     /**
      * @param string $accessToken
      * @param string|null $permission
@@ -71,6 +111,7 @@ class IAM
 
         return AdminDetails::createFromArray($response['admin']);
     }
+
     /**
      * @param string $accessToken
      * @param int|null $propertyId

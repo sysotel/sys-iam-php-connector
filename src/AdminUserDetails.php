@@ -14,7 +14,7 @@ class AdminUserDetails
      */
     protected array $permissions;
 
-    public function __construct(int $id, string $name, string $email)
+    public function __construct(int $id, string $name, string $email, array $permissions)
     {
         $this->id = $id;
         $this->name = $name;
