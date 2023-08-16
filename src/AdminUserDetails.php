@@ -20,7 +20,6 @@ class AdminUserDetails
         $this->email = $email;
     }
 
-
     public function hasPermission(string $permissionSymbol): bool
     {
         foreach ($this->permissions as $permission) {

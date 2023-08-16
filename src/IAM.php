@@ -39,7 +39,6 @@ class IAM
         ];
     }
 
-
     /**
      * @param string $accessToken
      * @param string|null $permission
@@ -70,13 +69,11 @@ class IAM
             abort(500, 'Admin details not found in response');
         }
 
-        $permissionData = $this->getPermissionData();
-
         return new AdminUserDetails($response['admin']['id'], $response['admin']['name'], $response['admin']['email'], [
-            'id' => $permissionData['id'],
-            'symbol' => $permissionData['symbol'],
-            'name' => $permissionData['name'],
-            'description' => $permissionData['description'],
+            'id' => $response['permissions']['id'],
+            'symbol' => $response['permissions']['symbol'],
+            'name' => $response['permissions']['name'],
+            'description' => $response['permissions']['description'],
         ]);
 
     }
@@ -168,15 +165,6 @@ class IAM
       return $this->responseToArray($response);
     }
 
-
-    public function getPermissionData()
-    {
-        $response = $this->client->get($this->url('permissions'), [
-            'headers' => $this->defaultHeaders(),
-        ]);
-
-        return $this->responseToArray($response);
-    }
 
     /**
      * Takes $url from config and $path from attributes
