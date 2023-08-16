@@ -39,7 +39,6 @@ class IAM
         ];
     }
 
-[14:48] Bappi Kumar
 
     /**
      * @param string $accessToken
