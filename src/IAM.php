@@ -69,12 +69,22 @@ class IAM
             abort(500, 'Admin details not found in response');
         }
 
-        return new AdminUserDetails($response['admin']['id'], $response['admin']['fullName'], $response['admin']['email'], [
-            'id' => $response['permissions']['id'],
-            'symbol' => $response['permissions']['symbol'],
-            'name' => $response['permissions']['name'],
-            'description' => $response['permissions']['description'],
-        ]);
+
+        $adminPermissions = [];
+        foreach ($response['permissions'] as $permissionData) {
+            $adminPermissions[] = new AdminPermissions(
+                $permissionData['id'],
+                $permissionData['name'],
+                $permissionData['description'],
+                $permissionData['symbol']
+            );
+        }
+
+        return new AdminUserDetails($response['admin']['id'],
+            $response['admin']['fullName'],
+            $response['admin']['email'],
+            $adminPermissions
+        );
 
     }
 
@@ -162,7 +172,7 @@ class IAM
             'headers' => $this->defaultHeaders(),
         ]);
 
-      return $this->responseToArray($response);
+        return $this->responseToArray($response);
     }
 
 
