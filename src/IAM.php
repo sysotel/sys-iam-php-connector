@@ -69,7 +69,7 @@ class IAM
             abort(500, 'Admin details not found in response');
         }
 
-        return new AdminUserDetails($response['admin']['id'], $response['admin']['name'], $response['admin']['email'], [
+        return new AdminUserDetails($response['admin']['id'], $response['admin']['fullName'], $response['admin']['email'], [
             'id' => $response['permissions']['id'],
             'symbol' => $response['permissions']['symbol'],
             'name' => $response['permissions']['name'],
