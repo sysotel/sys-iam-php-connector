@@ -2,7 +2,6 @@
 
 namespace SYSOTEL\APP\IAMConnector;
 
-
 class AdminUserDetails
 {
     protected int $id;
@@ -25,7 +24,7 @@ class AdminUserDetails
     public function hasPermission(string $permissionSymbol): bool
     {
         foreach ($this->permissions as $permission) {
-            if ($permission->symbol->value === $permissionSymbol) {
+            if ($permission->symbol === $permissionSymbol) {
                 return true;
             }
         }
@@ -37,7 +36,7 @@ class AdminUserDetails
     {
         foreach ($permissionSymbols as $symbol) {
             foreach ($this->permissions as $permission) {
-                if ($permission->symbol->value !== $symbol) {
+                if ($permission->symbol !== $symbol) {
                     return false;
                 }
             }
@@ -50,7 +49,7 @@ class AdminUserDetails
     {
         foreach ($permissionSymbols as $symbol) {
             foreach ($this->permissions as $permission) {
-                if ($permission->symbol->value === $symbol) {
+                if ($permission->symbol === $symbol) {
                     return true;
                 }
             }
