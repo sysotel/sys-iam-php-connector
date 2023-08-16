@@ -39,53 +39,14 @@ class IAM
         ];
     }
 
-//    /**
-//     * @param string $accessToken
-//     * @param string|null $permission
-//     * @return array
-//     * @throws GuzzleException
-//     */
-//    public function adminAuth(string $accessToken, null|string $permission = null): array
-//    {
-//        $response = $this->client->post($this->url('admin-auth'), [
-//            'headers' => $this->defaultHeaders(),
-//            'form_params' => [
-//                'accessToken' => $accessToken,
-//                'permission' => $permission
-//            ]
-//        ]);
-//
-//        $response = $this->responseToArray($response);
-//
-//        if (!$response['authDetails']['isTokenValid']) {
-//            throw new InvalidTokenException;
-//        }
-//
-//        if ($response['authDetails']['hasPermission'] === false) {
-//            throw new PermissionDeniedException;
-//        }
-//
-//        if (!$response['admin']) {
-//            abort(500, 'Admin details not found in response');
-//        }
-//
-//        $permissionData = $this->getPermissionData();
-//        $adminDetails =  AdminDetails::createFromArray($response['admin']);
-//
-//        return [
-//            'adminDetails' => $adminDetails,
-//            'permissionData' => $permissionData,
-//        ];
-//    }
-
 
     /**
      * @param string $accessToken
      * @param string|null $permission
-     * @return AdminDetails
+     * @return AdminUserDetails
      * @throws GuzzleException
      */
-    public function adminAuth(string $accessToken, null|string $permission = null): AdminDetails
+    public function adminAuth(string $accessToken, null|string $permission = null): AdminUserDetails
     {
         $response = $this->client->post($this->url('admin-auth'), [
             'headers' => $this->defaultHeaders(),
@@ -109,7 +70,15 @@ class IAM
             abort(500, 'Admin details not found in response');
         }
 
-        return AdminDetails::createFromArray($response['admin']);
+        $permissionData = $this->getPermissionData();
+
+        return new AdminUserDetails($response['admin']['id'], $response['admin']['name'], $response['admin']['email'], [
+            'id' => $permissionData['id'],
+            'symbol' => $permissionData['symbol'],
+            'name' => $permissionData['name'],
+            'description' => $permissionData['description'],
+        ]);
+
     }
 
     /**
