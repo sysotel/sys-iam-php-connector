@@ -71,8 +71,8 @@ class IAM
 
 
         $adminPermissions = [];
+        var_dump($response['permissions']);
         foreach ($response['permissions'] as $permissionData) {
-            var_dump($permissionData);
             $adminPermissions[] = new AdminPermissions(
                 $permissionData['id'],
                 $permissionData['name'],
