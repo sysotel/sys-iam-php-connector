@@ -8,11 +8,13 @@ class AdminDetails
      * @param int $id
      * @param string $name
      * @param string $email
+     *
      */
     public function __construct(
         public int $id,
         public readonly string $name,
         public readonly string $email,
+        array $permissions
     ){}
 
     /**
@@ -25,6 +27,7 @@ class AdminDetails
             $array['id'],
             $array['fullName'],
             $array['email'],
+            $array['permissions']
         );
     }
 }
