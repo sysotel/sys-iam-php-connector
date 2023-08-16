@@ -42,10 +42,10 @@ class IAM
     /**
      * @param string $accessToken
      * @param string|null $permission
-     * @return AdminDetails
+     * @return array
      * @throws GuzzleException
      */
-    public function adminAuth(string $accessToken, null|string $permission = null): AdminDetails
+    public function adminAuth(string $accessToken, null|string $permission = null): array
     {
         $response = $this->client->post($this->url('admin-auth'), [
             'headers' => $this->defaultHeaders(),
@@ -69,7 +69,13 @@ class IAM
             abort(500, 'Admin details not found in response');
         }
 
-        return AdminDetails::createFromArray($response['admin']);
+        $permissionData = $this->getPermissionData();
+        $adminDetails =  AdminDetails::createFromArray($response['admin']);
+
+        return [
+            'adminDetails' => $adminDetails,
+            'permissionData' => $permissionData,
+        ];
     }
 
     /**
@@ -142,6 +148,33 @@ class IAM
         return $this->responseToArray($response);
     }
 
+
+    /**
+     * Get initial data for a property.
+     *
+     * @param int $propertyId
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function getPropertyInitialData(int $propertyId): mixed
+    {
+        $response = $this->client->get($this->url("properties/{$propertyId}/initial-data"), [
+            'headers' => $this->defaultHeaders(),
+        ]);
+
+      return $this->responseToArray($response);
+    }
+
+
+    public function getPermissionData()
+    {
+        $response = $this->client->get($this->url('permissions'), [
+            'headers' => $this->defaultHeaders(),
+        ]);
+
+        return $this->responseToArray($response);
+    }
+
     /**
      * Takes $url from config and $path from attributes
      * Normalizes both
@@ -172,4 +205,5 @@ class IAM
     {
         return json_decode($response->getBody()->getContents(), true);
     }
+
 }
