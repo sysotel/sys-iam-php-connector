@@ -73,10 +73,10 @@ class IAM
         $adminPermissions = [];
         foreach ($response['permissions'] as $permissionData) {
             $adminPermissions[] = new AdminPermissions(
-                $permissionData->id,
-                $permissionData->name,
-                $permissionData->description,
-                $permissionData->symbol
+                $permissionData['id'],
+                $permissionData['name'],
+                $permissionData['description'],
+                $permissionData['symbol']
             );
         }
 
