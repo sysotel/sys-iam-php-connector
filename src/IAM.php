@@ -70,10 +70,10 @@ class IAM
         }
 
         return new AdminUserDetails($response['admin']['id'], $response['admin']['fullName'], $response['admin']['email'], [
-            'id' => $response['permissions']['id'],
-            'symbol' => $response['permissions']['symbol'],
-            'name' => $response['permissions']['name'],
-            'description' => $response['permissions']['description'],
+            'id' => $response['permission']['id'],
+            'symbol' => $response['permission']['symbol'],
+            'name' => $response['permission']['name'],
+            'description' => $response['permission']['description'],
         ]);
 
     }
