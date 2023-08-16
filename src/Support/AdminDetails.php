@@ -24,7 +24,7 @@ class AdminDetails
         return new self(
             $array['id'],
             $array['fullName'],
-            $array['email']
+            $array['email'],
         );
     }
 }

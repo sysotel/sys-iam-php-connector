@@ -73,7 +73,7 @@ class IAM
         $adminDetails =  AdminDetails::createFromArray($response['admin']);
 
         return [
-            'adminDetails' => $adminDetails,
+                'adminDetails' => $adminDetails,
             'permissionData' => $permissionData,
         ];
     }
