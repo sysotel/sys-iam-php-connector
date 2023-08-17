@@ -69,7 +69,6 @@ class IAM
             abort(500, 'Admin details not found in response');
         }
 
-
         $adminPermissions = [];
         foreach ($response['permissions'] as $permissionData) {
             $adminPermissions[] = new AdminPermissions(
