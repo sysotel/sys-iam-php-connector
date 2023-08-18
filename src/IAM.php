@@ -206,7 +206,7 @@ class IAM
         return json_decode($response->getBody()->getContents(), true);
     }
 
-    protected function properties(array $modules = null){
+    protected function getProperties(array $modules = null){
 
         $response = $this->client->get($this->url("properties"), [
             'headers' => $this->defaultHeaders(),

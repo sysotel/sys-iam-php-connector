@@ -14,6 +14,7 @@ use SYSOTEL\APP\IAMConnector\Support\ExtranetUserDetails;
  * @method static mixed getPropertiesForUser(int $userId)
  * @method static mixed getPropertyInitialData(int $propertyId)
  * @method static mixed getPermissionData()
+ * @method static mixed getProperties(array $modules = null)
  *
  * @see IAM
  */
