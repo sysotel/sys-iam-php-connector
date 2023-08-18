@@ -210,6 +210,7 @@ class IAM
 
         $response = $this->client->get($this->url("properties"), [
             'headers' => $this->defaultHeaders(),
+            'query' => ['modules' => $modules],
         ]);
 
         return $this->responseToArray($response);
