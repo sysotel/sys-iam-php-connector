@@ -9,7 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 use SYSOTEL\APP\IAMConnector\Exceptions\InvalidTokenException;
 use SYSOTEL\APP\IAMConnector\Exceptions\PermissionDeniedException;
 use SYSOTEL\APP\IAMConnector\Exceptions\PropertyAccessDeniedException;
-use SYSOTEL\APP\IAMConnector\Support\AdminDetails;
 use SYSOTEL\APP\IAMConnector\Support\ExtranetUserDetails;
 use SYSOTEL\APP\IAMConnector\Support\ConfigValidator;
 
