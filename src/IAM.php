@@ -219,7 +219,13 @@ class IAM
         return json_decode($response->getBody()->getContents(), true);
     }
 
-    public function getProperties(array $modules = null){
+    /**
+     * @param array|null $modules
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function getProperties(array $modules = null): mixed
+    {
 
         $response = $this->client->get($this->url("properties"), [
             'headers' => $this->defaultHeaders(),
@@ -228,5 +234,4 @@ class IAM
 
         return $this->responseToArray($response);
     }
-
 }
