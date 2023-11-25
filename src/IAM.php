@@ -157,7 +157,6 @@ class IAM
         return $this->responseToArray($response);
     }
 
-
     /**
      * Get initial data for a property.
      *
@@ -174,6 +173,21 @@ class IAM
         return $this->responseToArray($response);
     }
 
+    /**
+     * Get initial data for a property.
+     *
+     * @param array $data
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function cmsSync(array $data): mixed
+    {
+        $response = $this->client->get($this->url("cms-sync"), [
+            'headers' => $this->defaultHeaders(),
+        ]);
+
+        return $this->responseToArray($response);
+    }
 
     /**
      * Takes $url from config and $path from attributes
