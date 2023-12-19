@@ -226,8 +226,23 @@ class IAM
      */
     public function getProperties(array $modules = null): mixed
     {
-
         $response = $this->client->get($this->url("properties"), [
+            'headers' => $this->defaultHeaders(),
+            'query' => ['modules' => $modules],
+        ]);
+
+        return $this->responseToArray($response);
+    }
+
+
+    /**
+     * @param array $modules
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function getPropertiesByModule(array $modules): mixed
+    {
+        $response = $this->client->get($this->url("properties-by-modules"), [
             'headers' => $this->defaultHeaders(),
             'query' => ['modules' => $modules],
         ]);
